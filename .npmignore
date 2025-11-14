@@ -1,0 +1,15 @@
+# Development files
+.DS_Store
+*.log
+.env
+
+# Build output
+_site/
+
+# Sample content (don't include in npm package)
+content/
+
+# Git
+.git/
+.gitignore
+
