@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="search-page">
+  <div class="container">
+    <header class="page-header">
+      <h1>Search</h1>
+    </header>
+
+    <div class="search-container">
+      <input type="search" id="search-input" class="search-input" placeholder="Search posts..." autocomplete="off">
+      
+      <div id="tag-filters" class="tag-filters"></div>
+      
+      <div id="search-results" class="search-results">
+        <p class="search-hint">Browse all posts below, select tags to filter (AND logic), or search for specific content</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

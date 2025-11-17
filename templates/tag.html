@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="tag-archive">
+  <div class="container">
+    <header class="page-header">
+      <h1>Tag: {{ tag }}</h1>
+      <p>{{ posts.length }} post{% if posts.length != 1 %}s{% endif %} tagged with "{{ tag }}"</p>
+    </header>
+
+    <div class="posts-list">
+      {% for post in posts %}
+      <article class="post-preview">
+        <h2><a href="{{ site.baseUrl }}{{ post.url }}">{{ post.title }}</a></h2>
+        <div class="post-meta">
+          <time datetime="{{ post.date | date('yyyy-MM-dd') }}">{{ post.date | date('MMMM dd, yyyy') }}</time>
+          {% if post.readingTime %}
+          <span class="separator">•</span>
+          <span class="reading-time">{{ post.readingTime }} min read</span>
+          {% endif %}
+        </div>
+        {% if post.excerpt %}
+        <p class="post-excerpt">{{ post.excerpt }}</p>
+        {% endif %}
+        <a href="{{ site.baseUrl }}{{ post.url }}" class="read-more">Read more →</a>
+      </article>
+      {% endfor %}
+    </div>
+
+    <p class="back-link"><a href="{{ site.baseUrl }}/blog/">← Back to all posts</a></p>
+  </div>
+</div>
+{% endblock %}
+
