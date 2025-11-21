@@ -1,0 +1,55 @@
+# Site Configuration
+site:
+  title: "My Blog"
+  description: "A modern blog powered by MarkSite"
+  url: "https://yourusername.github.io"
+  baseUrl: ""
+  author: "Your Name"
+  email: "your.email@example.com"
+  language: "en"
+
+# Build Settings
+build:
+  source: "content"
+  destination: "_site"
+  templates: "templates"
+  assets: "assets"
+
+# Blog Settings
+blog:
+  postsPerPage: 10
+  dateFormat: "MMMM dd, yyyy"
+  excerptLength: 200
+
+# SEO Settings
+seo:
+  enableSitemap: true
+  enableRSS: true
+  enableJsonLD: true
+  socialImage: "/assets/images/social-preview.jpg"
+  twitterHandle: "@yourusername"
+
+# Social Links
+social:
+  github: "https://github.com/yourusername"
+  twitter: "https://twitter.com/yourusername"
+  linkedin: "https://linkedin.com/in/yourusername"
+
+# Navigation
+navigation:
+  - title: "Home"
+    url: "/"
+  - title: "Blog"
+    url: "/blog"
+  - title: "About"
+    url: "/about"
+  - title: "Contact"
+    url: "/contact"
+
+# Additional Features
+features:
+  syntaxHighlighting: true
+  readingTime: true
+  tableOfContents: true
+  darkMode: true
+  search: true

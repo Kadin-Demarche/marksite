@@ -1,0 +1,15 @@
+node_modules/
+_site/
+.DS_Store
+*.log
+.env
+
+# Development
+content/
+templates/
+assets/
+
+# Keep examples
+!content/.gitkeep
+!templates/.gitkeep
+!assets/.gitkeep

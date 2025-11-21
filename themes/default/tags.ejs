@@ -1,0 +1,18 @@
+<%
+const layoutBody = `
+<div class="tags-page">
+    <h1>All Tags</h1>
+    
+    <div class="tags-cloud" style="margin-top: 2rem;">
+        <% Object.entries(tags).sort((a, b) => a[0].localeCompare(b[0])).forEach(([tagName, tagPosts]) => { %>
+            <a href="/tags/<%= tagName.toLowerCase().replace(/\\s+/g, '-') %>/" class="tag" style="font-size: <%= 0.85 + (tagPosts.length * 0.1) %>rem;">
+                <%= tagName %> (<%= tagPosts.length %>)
+            </a>
+        <% }) %>
+    </div>
+</div>
+`;
+%>
+
+<%- include('layout', { body: layoutBody, title: 'All Tags', config, meta, structuredData }) %>
+
