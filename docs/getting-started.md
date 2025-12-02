@@ -114,6 +114,14 @@ Open your browser to `http://localhost:3000` to see your site.
 
 The server automatically rebuilds when you change files.
 
+Run a quick health check anytime:
+
+```bash
+npm run doctor -- --content-dir blog-data
+```
+
+This reports errors/warnings for missing config, posts without titles, etc.
+
 ## Step 6: Create New Posts
 
 Create your first blog post:

@@ -10,6 +10,7 @@ Choose your path based on your situation:
 - **Migrating from old structure?** → Read [Migration Guide](./migration.md)
 - **Want to understand the architecture?** → Check [Content Directory Structure](./content-directory.md)
 - **Need command reference?** → See [CLI Reference](./cli-reference.md)
+- **Looking for release notes?** → Read [Releases](./releases/1.2.md)
 
 ## Key Features
 
@@ -67,6 +68,15 @@ node cli.js serve --content-dir blog-data
 
 # Create a new post
 node cli.js new "My First Post" --content-dir blog-data
+
+# Health check
+npm run doctor -- --content-dir blog-data
+
+# Remove generated site output
+node cli.js clean --content-dir blog-data
+
+# Clear all content (prompts unless forced)
+node cli.js clearcontent --content-dir blog-data
 
 # Migrate existing project
 node cli.js migrate

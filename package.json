@@ -1,7 +1,7 @@
 {
   "name": "marksite",
-  "version": "1.0.0",
-  "description": "Modern static site generator for GitHub Pages. Write in Markdown, deploy in seconds.",
+  "version": "1.2.0",
+  "description": "Modern static site generator for GitHub Pages.",
   "main": "index.js",
   "type": "module",
   "bin": {
@@ -19,7 +19,8 @@
     "build": "node cli.js build",
     "serve": "node cli.js serve",
     "new": "node cli.js new",
-    "init": "node cli.js init"
+    "init": "node cli.js init",
+    "doctor": "node cli.js doctor"
   },
   "keywords": [
     "static-site",
@@ -30,7 +31,7 @@
     "jekyll",
     "seo"
   ],
-  "author": "",
+  "author": "Kadin DeMarche",
   "license": "MIT",
   "dependencies": {
     "marked": "^11.1.1",

@@ -67,7 +67,7 @@ Your site's base URL without trailing slash.
 ```yaml
 site:
   url: "https://myblog.com"           # For GitHub Pages
-  url: "https://example.com/blog"     # For subdirectory
+  url: "https://example.com"          # Pair with baseUrl for subdirectories
 ```
 
 #### `site.author` (optional)
@@ -110,6 +110,10 @@ site:
   url: "https://example.com"
   baseUrl: "/blog"        # Site accessible at /blog/
 ```
+
+Notes:
+- Use a leading slash and no trailing slash for `baseUrl`.
+- Keep `site.url` free of the base path; the generator combines `url` + `baseUrl` for canonical/OG/Twitter/JSON-LD/feed links and client-side search.
 
 ---
 

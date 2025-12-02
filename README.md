@@ -5,8 +5,17 @@ A modern static site generator for GitHub Pages. Write in Markdown, deploy in se
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org/)
 
+## Release Report (v1.2.0 — 2025-12-02)
+
+- Canonical/OG/Twitter/JSON-LD links now honor `site.url` + `site.baseUrl`, fixing GitHub Pages project subpaths.
+- Tag/category slugs are consistent across pages, search index, and sitemap; no more broken tag links.
+- Search fetches/results respect base paths and accept multiple `?tag=` filters.
+- Dev server verifies the build directory, and a baked-in `npm run doctor` script surfaces config/content issues fast.
+- Full notes: see [docs/releases/1.2.md](docs/releases/1.2.md)
+
 ## Contents
 
+- [Release Report](#release-report-v120--2025-12-02)
 - [Why MarkSite?](#why-marksite)
 - [Quick Start](#quick-start)
 - [Features](#features)
@@ -30,11 +39,12 @@ A modern static site generator for GitHub Pages. Write in Markdown, deploy in se
 ## Quick Start
 
 ```bash
-npx marksite init my-blog
+git clone https://github.com/Kadin-Demarche/marksite.git my-blog
 cd my-blog
+./marksite init .           # no global install needed
 npm install
-npm run build
-npm run serve
+./marksite build
+./marksite serve
 ```
 
 Visit `http://localhost:3000` - you're done.
@@ -52,7 +62,16 @@ Visit `http://localhost:3000` - you're done.
 
 ## Installation
 
-### Option 1: Quick Init (Recommended)
+### Option 1: Local (no global install)
+
+```bash
+git clone https://github.com/Kadin-Demarche/marksite.git
+cd marksite
+./marksite init .   # or ./marksite init my-blog
+npm install
+```
+
+### Option 2: Quick Init via npx
 
 ```bash
 npx marksite init my-blog
@@ -60,22 +79,13 @@ cd my-blog
 npm install
 ```
 
-### Option 2: Global Install
+### Option 3: Global Install
 
 ```bash
 npm install -g marksite
 marksite init my-blog
 cd my-blog
 npm install
-```
-
-### Option 3: Clone Repository
-
-```bash
-git clone https://github.com/Kadin-Demarche/marksite.git
-cd marksite
-npm install
-npm run init
 ```
 
 ## Usage
@@ -115,19 +125,23 @@ Your content here...
 ### Build & Preview
 
 ```bash
-npm run build    # Build site to _site/
-npm run serve    # Preview at localhost:3000
+./marksite build    # Build site to _site/
+./marksite serve    # Preview at localhost:3000
+./marksite clean    # Remove generated _site/ output
+./marksite clearcontent    # Remove all markdown content (recreates empty content/posts, asks to confirm; --force to skip)
+npm run doctor      # Health check; exits non-zero on errors
 ```
 
 ### Commands
 
 ```bash
-marksite init [dir]           # Initialize new site
-marksite build                # Build site
-marksite build --watch        # Build and watch for changes
-marksite serve                # Start dev server (port 3000)
-marksite serve --port 8080    # Use custom port
-marksite new "Post Title"     # Create new post
+./marksite init [dir]           # Initialize new site
+./marksite build                # Build site
+./marksite build --watch        # Build and watch for changes
+./marksite serve                # Start dev server (port 3000)
+./marksite serve --port 8080    # Use custom port
+./marksite new "Post Title"     # Create new post
+./marksite doctor               # Check project for common issues
 ```
 
 ## Configuration

@@ -1,0 +1,37 @@
+site:
+  title: "Landing Starter"
+  description: "A product-style landing page built with MarkSite"
+  url: "https://yourusername.github.io"
+  baseUrl: ""
+  author: "Product Team"
+  language: "en"
+
+build:
+  source: "content"
+  destination: "_site"
+  templates: "templates"
+  assets: "assets"
+
+blog:
+  postsPerPage: 5
+
+seo:
+  enableSitemap: true
+  enableRSS: false
+
+navigation:
+  - title: "Home"
+    url: "/"
+  - title: "Features"
+    url: "/#features"
+  - title: "Pricing"
+    url: "/pricing"
+  - title: "Contact"
+    url: "/contact"
+
+features:
+  syntaxHighlighting: false
+  readingTime: false
+  tableOfContents: false
+  darkMode: true
+  search: false

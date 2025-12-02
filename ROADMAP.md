@@ -7,23 +7,23 @@ Future plans and ideas for MarkSite.
 ### Performance
 - [ ] Improve build speed for large sites (100+ posts)
 - [ ] Add incremental builds (only rebuild changed files)
-- [ ] Optimize search index size
+- [x] Optimize search index size
 
 ### Publishing Basics
-- [ ] Draft posts support
+- [x] Draft posts support
 - [ ] Scheduled publishing using actions?
-- [ ] Category system (in addition to tags)
-- [ ] Related posts suggestions
+- [x] Category system (in addition to tags)
+- [x] Related posts suggestions
 - [ ] Image optimization
 
 ### Developer Experience
 - [ ] Better error messages
-- [ ] `doctor` command to check for issues
-- [ ] Live preview with WebSocket refresh
-- [ ] Built-in sitemap and RSS feed generation
-- [ ] One-click starter templates (blog, docs, landing)
-- [ ] Better defaults for navigation (breadcrumbs, previous/next links, sticky table of contents)
-- [ ] Accessibility pass (skip links, focus states, ARIA landmarks)
+- [x] `doctor` command to check for issues
+- [x] Live preview with WebSocket refresh
+- [x] Built-in sitemap and RSS feed generation
+- [x] One-click starter templates (blog, docs, landing)
+- [x] Better defaults for navigation (breadcrumbs, previous/next links, sticky table of contents)
+- [x] Accessibility pass (skip links, focus states, ARIA landmarks)
 
 ## Version 2.0
 

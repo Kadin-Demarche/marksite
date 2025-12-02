@@ -1,0 +1,39 @@
+site:
+  title: "Docs Starter"
+  description: "A documentation starter for MarkSite"
+  url: "https://yourusername.github.io"
+  baseUrl: ""
+  author: "Docs Team"
+  language: "en"
+
+build:
+  source: "content"
+  destination: "_site"
+  templates: "templates"
+  assets: "assets"
+
+blog:
+  postsPerPage: 10
+  dateFormat: "MMMM dd, yyyy"
+  excerptLength: 180
+
+seo:
+  enableSitemap: true
+  enableRSS: true
+
+navigation:
+  - title: "Docs Home"
+    url: "/"
+  - title: "Getting Started"
+    url: "/getting-started"
+  - title: "Guides"
+    url: "/guides"
+  - title: "Changelog"
+    url: "/changelog"
+
+features:
+  syntaxHighlighting: true
+  readingTime: true
+  tableOfContents: true
+  darkMode: true
+  search: true

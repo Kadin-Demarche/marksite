@@ -1,0 +1,11 @@
+@import url("./style.core.css");
+
+:root {
+  --primary-color: #0ea5e9;
+  --text-color: #0f172a;
+  --bg-color: #f8fafc;
+  --secondary-bg: #e2e8f0;
+  --border-color: #cbd5e1;
+  --max-width: 900px;
+  --spacing: 1.75rem;
+}

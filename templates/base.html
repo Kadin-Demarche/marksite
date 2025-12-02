@@ -17,8 +17,8 @@
   <meta property="og:title" content="{{ title or site.title }}">
   <meta property="og:description" content="{{ excerpt or description or site.description }}">
   <meta property="og:type" content="{% if layout == 'post' %}article{% else %}website{% endif %}">
-  <meta property="og:url" content="{{ site.url }}{{ url or '/' }}">
-  <meta property="og:image" content="{{ site.url }}{{ site.baseUrl }}/assets/images/og-default.png">
+  <meta property="og:url" content="{{ site.absoluteBaseUrl }}{{ url or '/' }}">
+  <meta property="og:image" content="{{ site.absoluteBaseUrl }}/assets/images/og-default.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   {% if layout == 'post' and date %}
@@ -33,7 +33,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ title or site.title }}">
   <meta name="twitter:description" content="{{ excerpt or description or site.description }}">
-  <meta name="twitter:image" content="{{ site.url }}{{ site.baseUrl }}/assets/images/og-default.png">
+  <meta name="twitter:image" content="{{ site.absoluteBaseUrl }}/assets/images/og-default.png">
   {% if site.social and site.social.twitter %}
   <meta name="twitter:site" content="@{{ site.social.twitter }}">
   <meta name="twitter:creator" content="@{{ site.social.twitter }}">
@@ -44,12 +44,41 @@
   
   <!-- Stylesheet -->
   <link rel="stylesheet" href="{{ site.baseUrl }}/assets/css/style.css">
+  <style>
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap;
+    }
+    .skip-link:focus {
+      left: 0.75rem;
+      top: 0.75rem;
+      width: auto;
+      height: auto;
+      padding: 0.75rem 1rem;
+      clip: auto;
+      background: var(--primary-color, #2563eb);
+      color: #fff;
+      border-radius: 0.5rem;
+      z-index: 1000;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+    }
+  </style>
   
   <!-- RSS Feed -->
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.baseUrl }}/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.absoluteBaseUrl }}/feed.xml">
   
   <!-- Canonical URL -->
-  <link rel="canonical" href="{{ site.url }}{{ url or '/' }}">
+  <link rel="canonical" href="{{ site.absoluteBaseUrl }}{{ url or '/' }}">
+
+  <script>
+    window.__MARKSITE_BASEURL__ = "{{ site.baseUrl | replace('\"', '\\\"') }}";
+  </script>
   
   {% if layout == 'post' %}
   <!-- Article Schema (JSON-LD) for Rich Snippets -->
@@ -61,24 +90,24 @@
     "author": {
       "@type": "Person",
       "name": "' + ((author or site.author) | jsonEscape) + '",
-      "url": "' + site.url + '"
+      "url": "' + site.absoluteBaseUrl + '"
     },
     "publisher": {
       "@type": "Organization",
       "name": "' + (site.title | jsonEscape) + '",
       "logo": {
         "@type": "ImageObject",
-        "url": "' + site.url + site.baseUrl + '/assets/images/og-default.png"
+        "url": "' + site.absoluteBaseUrl + '/assets/images/og-default.png"
       }
     },
     "datePublished": "' + (date | date('yyyy-MM-dd')) + 'T' + (date | date('HH:mm:ss')) + 'Z",
     "dateModified": "' + (date | date('yyyy-MM-dd')) + 'T' + (date | date('HH:mm:ss')) + 'Z",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "' + site.url + url + '"
+      "@id": "' + site.absoluteBaseUrl + url + '"
     },
-    "image": "' + site.url + site.baseUrl + '/assets/images/og-default.png",
-    "url": "' + site.url + url + '"' + 
+    "image": "' + site.absoluteBaseUrl + '/assets/images/og-default.png",
+    "url": "' + site.absoluteBaseUrl + url + '"' + 
     (',"keywords": "' + (tags | join(', ') | jsonEscape) + '"' if tags and tags.length > 0 else '') +
     (',"timeRequired": "' + (readingTime | jsonEscape) + '"' if readingTime else '') +
     ',"articleSection": "Technology",
@@ -88,8 +117,9 @@
   {% endif %}
 </head>
 <body>
+  <a href="#mainContent" class="skip-link">Skip to content</a>
   <!-- Navigation -->
-  <nav class="navbar">
+  <nav class="navbar" aria-label="Primary">
     <div class="container">
       <a href="{{ site.baseUrl }}/" class="nav-brand">{{ site.title }}</a>
       <ul class="nav-menu">
@@ -107,7 +137,7 @@
   </nav>
 
   <!-- Main Content -->
-  <main class="main">
+  <main class="main" id="mainContent" tabindex="-1">
     {% block content %}{% endblock %}
   </main>
 
@@ -137,4 +167,3 @@
   {% endif %}
 </body>
 </html>
-

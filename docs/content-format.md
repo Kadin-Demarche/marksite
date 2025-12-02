@@ -47,6 +47,7 @@ date: 2025-01-15
 ```
 
 **Note**: Only required for posts in `content/posts/`. Optional for pages.
+Future dates are treated as scheduled and skipped at build time unless `blog.allowFuture` is enabled.
 
 #### `author` (optional)
 
@@ -117,6 +118,14 @@ Mark content as draft (not published). Default: `false`
 ```yaml
 draft: false       # Published
 draft: true        # Draft (hidden from listings)
+```
+
+#### `categories` (optional)
+
+Categorize content in addition to tags.
+
+```yaml
+categories: ["guides", "product"]
 ```
 
 #### `featured` (optional)

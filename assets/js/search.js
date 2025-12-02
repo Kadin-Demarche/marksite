@@ -1,10 +1,16 @@
 let searchIndex = null;
 let allPosts = [];
+const basePath = (window.__MARKSITE_BASEURL__ || '').replace(/\/+$/, '');
+
+const withBase = (path) => {
+  const normalized = path && path.startsWith('/') ? path : `/${path || ''}`;
+  return `${basePath}${normalized}`;
+};
 
 // Load search index
 async function loadSearchIndex() {
   try {
-    const response = await fetch('/search-index.json');
+    const response = await fetch(withBase('/search-index.json'));
     const data = await response.json();
     allPosts = data.posts || [];
     return allPosts;
@@ -54,7 +60,7 @@ function displayResults(results) {
   
   const html = results.map(post => `
     <article class="search-result-item">
-      <h2><a href="${post.url}">${post.title}</a></h2>
+      <h2><a href="${withBase(post.url)}">${post.title}</a></h2>
       <div class="post-meta">
         <time>${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
       </div>
@@ -133,14 +139,18 @@ function performSearch() {
 // Initialize search page
 if (document.getElementById('search-input')) {
   loadSearchIndex().then(() => {
-    displayTagFilters();
-    
     const searchInput = document.getElementById('search-input');
     searchInput.addEventListener('input', performSearch);
     
     // Check for URL parameters
     const urlParams = new URLSearchParams(window.location.search);
     const query = urlParams.get('q');
+    const urlTags = urlParams.getAll('tag').filter(Boolean);
+    if (urlTags.length) {
+      selectedTags = urlTags;
+    }
+    displayTagFilters(selectedTags);
+
     if (query) {
       searchInput.value = query;
     }
@@ -149,4 +159,3 @@ if (document.getElementById('search-input')) {
     performSearch();
   });
 }
-

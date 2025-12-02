@@ -1,0 +1,17 @@
+@import url("./style.core.css");
+
+:root {
+  --primary-color: #a855f7;
+  --text-color: #111827;
+  --bg-color: #fdf8ff;
+  --secondary-bg: #f3e8ff;
+  --border-color: #e9d5ff;
+  --max-width: 960px;
+  --spacing: 1.5rem;
+}
+
+body {
+  background: radial-gradient(circle at 20% 20%, rgba(168, 85, 247, 0.12), transparent 30%),
+              radial-gradient(circle at 80% 0%, rgba(56, 189, 248, 0.12), transparent 28%),
+              var(--bg-color);
+}

@@ -3,6 +3,14 @@
 {% block content %}
 <article class="post">
   <div class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="{{ site.baseUrl }}/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="{{ site.baseUrl }}/blog/">Blog</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ title }}</span>
+    </nav>
+
     <header class="post-header">
       <h1>{{ title }}</h1>
       <div class="post-meta">
@@ -13,14 +21,21 @@
         <span class="separator">•</span>
         <span class="reading-time">{{ readingTime }}</span>
         {% endif %}
-      </div>
-      {% if tags.length > 0 %}
-      <div class="post-tags">
+        {% if tags.length > 0 %}
+        <span class="separator">•</span>
+        <span>Tags:</span>
         {% for tag in tags %}
         <a href="{{ site.baseUrl }}/tag/{{ tag | slug }}/" class="tag">{{ tag }}</a>
         {% endfor %}
+        {% endif %}
+        {% if categories and categories.length > 0 %}
+        <span class="separator">•</span>
+        <span>Categories:</span>
+        {% for category in categories %}
+        <a href="{{ site.baseUrl }}/category/{{ category | slug }}/" class="tag">{{ category }}</a>
+        {% endfor %}
+        {% endif %}
       </div>
-      {% endif %}
     </header>
 
     <div class="post-layout">
@@ -28,6 +43,27 @@
         <div class="post-content">
           {{ content | safe }}
         </div>
+
+        {% if related and related.length > 0 %}
+        <section class="related-posts">
+          <h2>Related Posts</h2>
+          <div class="posts-list">
+            {% for relatedPost in related %}
+            <article class="post-preview">
+              <h3><a href="{{ site.baseUrl }}{{ relatedPost.url }}">{{ relatedPost.title }}</a></h3>
+              <div class="post-meta">
+                <time datetime="{{ relatedPost.date | date('yyyy-MM-dd') }}">{{ relatedPost.date | date('MMMM dd, yyyy') }}</time>
+                {% if relatedPost.readingTime %}
+                <span class="separator">•</span>
+                <span class="reading-time">{{ relatedPost.readingTime }}</span>
+                {% endif %}
+              </div>
+              <a href="{{ site.baseUrl }}{{ relatedPost.url }}" class="read-more">Read more →</a>
+            </article>
+            {% endfor %}
+          </div>
+        </section>
+        {% endif %}
 
         <nav class="post-navigation">
           {% if prevPost %}
@@ -47,9 +83,9 @@
         <footer class="post-footer">
           <div class="share-buttons">
             <span>Share:</span>
-            <a href="https://twitter.com/intent/tweet?text={{ title | urlencode }}&url={{ site.url }}{{ url }}" target="_blank" rel="noopener">Twitter</a>
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ url }}" target="_blank" rel="noopener">Facebook</a>
-            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ url }}&title={{ title | urlencode }}" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://twitter.com/intent/tweet?text={{ title | urlencode }}&url={{ site.absoluteBaseUrl }}{{ url }}" target="_blank" rel="noopener">Twitter</a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.absoluteBaseUrl }}{{ url }}" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.absoluteBaseUrl }}{{ url }}&title={{ title | urlencode }}" target="_blank" rel="noopener">LinkedIn</a>
           </div>
         </footer>
       </div>
@@ -74,4 +110,3 @@
   </div>
 </article>
 {% endblock %}
-

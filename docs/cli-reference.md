@@ -117,11 +117,14 @@ blog-data/_site/
 ├── blog/index.html
 ├── blog/{post-slug}/index.html
 ├── tag/{tag-name}/index.html
+├── category/{category-slug}/index.html
 ├── feed.xml
 ├── sitemap.xml
 ├── search-index.json
 └── assets/
 ```
+
+All generated URLs honor `site.url` and `site.baseUrl` from `config.yaml`, so subdirectory deployments (e.g., GitHub Pages project sites) work out of the box.
 
 ---
 
@@ -308,6 +311,82 @@ rm -rf assets/
 See [Migration Guide](./migration.md) for detailed instructions.
 
 ---
+
+### `node cli.js clean`
+
+Remove the generated build output directory.
+
+#### Syntax
+
+```bash
+node cli.js clean [options]
+```
+
+#### Options
+
+| Option | Short | Description | Default |
+|--------|-------|-------------|---------|
+| `--content-dir` | `-d` | Content directory path | auto-resolved |
+| `--help` | `-h` | Show command help | - |
+
+#### Example
+
+```bash
+node cli.js clean --content-dir ./blog-data
+```
+
+---
+
+### `node cli.js clearcontent`
+
+Delete all markdown content under your content directory (prompts for confirmation unless forced) and recreate an empty `content/posts` structure.
+
+#### Syntax
+
+```bash
+node cli.js clearcontent [options]
+```
+
+#### Options
+
+| Option | Short | Description | Default |
+|--------|-------|-------------|---------|
+| `--content-dir` | `-d` | Content directory path | auto-resolved |
+| `--force` | `-f` | Skip confirmation prompt | `false` |
+| `--help` | `-h` | Show command help | - |
+
+#### Example
+
+```bash
+node cli.js clearcontent --content-dir ./blog-data --force
+```
+
+---
+
+### `node cli.js doctor`
+
+Run health checks against your project to spot common issues (missing config, missing content, posts without required fields).
+
+#### Syntax
+
+```bash
+node cli.js doctor [options]
+```
+
+#### Options
+
+| Option | Short | Description | Default |
+|--------|-------|-------------|---------|
+| `--content-dir` | `-d` | Content directory path | auto-resolved |
+| `--help` | `-h` | Show command help | - |
+
+#### Example
+
+```bash
+node cli.js doctor --content-dir ./blog-data
+```
+
+Returns a report with errors/warnings and exits non-zero if errors are found.
 
 ## Usage Patterns
 
